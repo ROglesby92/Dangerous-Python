@@ -94,30 +94,30 @@ def discoverFiles():
     
     #Start multi threads to search for these files faster.
     
-    t1 = threading.Thread(target=Search_C_Drive, args=cFiles)
-    t2 = threading.Thread(target=Search_D_Drive, args=dFiles)
-    t3 = threading.Thread(target=Search_E_Drive, args=eFiles)
-    t4 = threading.Thread(target=Search_F_Drive, args=fFiles)
-    t5 = threading.Thread(target=Search_G_Drive, args=gFiles)
-    t6 = threading.Thread(target=Search_H_Drive, args=hFiles)
-    t7 = threading.Thread(target=Search_I_Drive, args=iFiles)
-    t8 = threading.Thread(target=Search_J_Drive, args=jFiles)
-    t9 = threading.Thread(target=Search_K_Drive, args=kFiles)
-    t10 = threading.Thread(target=Search_L_Drive, args=lFiles)
-    t11 = threading.Thread(target=Search_M_Drive, args=mFiles)
-    t12 = threading.Thread(target=Search_N_Drive, args=nFiles)
-    t13 = threading.Thread(target=Search_O_Drive, args=oFiles)
-    t14 = threading.Thread(target=Search_P_Drive, args=pFiles)
-    t15 = threading.Thread(target=Search_Q_Drive, args=qFiles)
-    t16 = threading.Thread(target=Search_R_Drive, args=rFiles)
-    t17 = threading.Thread(target=Search_S_Drive, args=sFiles)
-    t18 = threading.Thread(target=Search_T_Drive, args=tFiles)
-    t19 = threading.Thread(target=Search_U_Drive, args=uFiles)
-    t20 = threading.Thread(target=Search_V_Drive, args=vFiles)
-    t21 = threading.Thread(target=Search_W_Drive, args=wFiles)
-    t21 = threading.Thread(target=Search_X_Drive, args=xFiles)
-    t22 = threading.Thread(target=Search_Y_Drive, args=yFiles)
-    t23 = threading.Thread(target=Search_Z_Drive, args=zFiles)
+    t1 = threading.Thread(target=Search_C_Drive)
+    t2 = threading.Thread(target=Search_D_Drive)
+    t3 = threading.Thread(target=Search_E_Drive)
+    t4 = threading.Thread(target=Search_F_Drive)
+    t5 = threading.Thread(target=Search_G_Drive)
+    t6 = threading.Thread(target=Search_H_Drive)
+    t7 = threading.Thread(target=Search_I_Drive)
+    t8 = threading.Thread(target=Search_J_Drive)
+    t9 = threading.Thread(target=Search_K_Drive)
+    t10 = threading.Thread(target=Search_L_Drive)
+    t11 = threading.Thread(target=Search_M_Drive)
+    t12 = threading.Thread(target=Search_N_Drive)
+    t13 = threading.Thread(target=Search_O_Drive)
+    t14 = threading.Thread(target=Search_P_Drive)
+    t15 = threading.Thread(target=Search_Q_Drive)
+    t16 = threading.Thread(target=Search_R_Drive)
+    t17 = threading.Thread(target=Search_S_Drive)
+    t18 = threading.Thread(target=Search_T_Drive)
+    t19 = threading.Thread(target=Search_U_Drive)
+    t20 = threading.Thread(target=Search_V_Drive)
+    t21 = threading.Thread(target=Search_W_Drive)
+    t21 = threading.Thread(target=Search_X_Drive)
+    t22 = threading.Thread(target=Search_Y_Drive)
+    t23 = threading.Thread(target=Search_Z_Drive)
     
     t1.start()
     t2.start()
@@ -199,222 +199,224 @@ extensions = [
 
 # Search functions for all drives
 # Check if the file is a wanted extension
-def Search_C_Drive(EmptyList):
+
+
+def Search_C_Drive():
 	for dirpath, dirs, files in os.walk("C:\\"):
         for filename in files:
            
             fname = os.path.join(dirpath,filename)
           
             if fname.endswith(tuple(extensions)):
-                EmptyList.append(fname)
+                cFiles.append(fname)
 	
 
-def Search_D_Drive(EmptyList):
+def Search_D_Drive():
     for dirpath, dirs, files in os.walk("D:\\"):
         for filename in files:
            
             fname = os.path.join(dirpath,filename)
           
             if fname.endswith(tuple(extensions)):
-                EmptyList.append(fname)
+                dFiles.append(fname)
 
-def Search_E_Drive(EmptyList):
+def Search_E_Drive():
     for dirpath, dirs, files in os.walk("E:\\"):
         for filename in files:
            
             fname = os.path.join(dirpath,filename)
           
             if fname.endswith(tuple(extensions)):
-                EmptyList.append(fname)
+                eFiles.append(fname)
 
-def Search_F_Drive(EmptyList):
+def Search_F_Drive():
     for dirpath, dirs, files in os.walk("F:\\"):
         for filename in files:
            
             fname = os.path.join(dirpath,filename)
           
             if fname.endswith(tuple(extensions)):
-                EmptyList.append(fname)
+                fFiles.append(fname)
 
-def Search_G_Drive(EmptyList):
+def Search_G_Drive():
     for dirpath, dirs, files in os.walk("G:\\"):
         for filename in files:
            
             fname = os.path.join(dirpath,filename)
           
             if fname.endswith(tuple(extensions)):
-                EmptyList.append(fname)
+                gFiles.append(fname)
 
-def Search_H_Drive(EmptyList):
+def Search_H_Drive():
     for dirpath, dirs, files in os.walk("H:\\"):
         for filename in files:
            
             fname = os.path.join(dirpath,filename)
           
             if fname.endswith(tuple(extensions)):
-                EmptyList.append(fname)
+                hFiles.append(fname)
 
-def Search_I_Drive(EmptyList):
+def Search_I_Drive():
     for dirpath, dirs, files in os.walk("I:\\"):
         for filename in files:
            
             fname = os.path.join(dirpath,filename)
           
             if fname.endswith(tuple(extensions)):
-                EmptyList.append(fname)
+                iFiles.append(fname)
 
-def Search_J_Drive(EmptyList):
+def Search_J_Drive():
     for dirpath, dirs, files in os.walk("J:\\"):
         for filename in files:
            
             fname = os.path.join(dirpath,filename)
           
             if fname.endswith(tuple(extensions)):
-                EmptyList.append(fname)
+                jFiles.append(fname)
 
-def Search_K_Drive(EmptyList):
+def Search_K_Drive():
     for dirpath, dirs, files in os.walk("K:\\"):
         for filename in files:
            
             fname = os.path.join(dirpath,filename)
           
             if fname.endswith(tuple(extensions)):
-                EmptyList.append(fname)
+                kFiles.append(fname)
 
-def Search_L_Drive(EmptyList):
+def Search_L_Drive():
     for dirpath, dirs, files in os.walk("L:\\"):
         for filename in files:
            
             fname = os.path.join(dirpath,filename)
           
             if fname.endswith(tuple(extensions)):
-                EmptyList.append(fname)
+                lFiles.append(fname)
 
-def Search_M_Drive(EmptyList):
+def Search_M_Drive():
     for dirpath, dirs, files in os.walk("M:\\"):
         for filename in files:
            
             fname = os.path.join(dirpath,filename)
           
             if fname.endswith(tuple(extensions)):
-                EmptyList.append(fname)
+                mFiles.append(fname)
 
-def Search_N_Drive(EmptyList):
+def Search_N_Drive():
     for dirpath, dirs, files in os.walk("N:\\"):
         for filename in files:
            
             fname = os.path.join(dirpath,filename)
           
             if fname.endswith(tuple(extensions)):
-                EmptyList.append(fname)
+                nFiles.append(fname)
 
-def Search_O_Drive(EmptyList):
+def Search_O_Drive():
     for dirpath, dirs, files in os.walk("O:\\"):
         for filename in files:
            
             fname = os.path.join(dirpath,filename)
           
             if fname.endswith(tuple(extensions)):
-                EmptyList.append(fname)
+                oFiles.append(fname)
 
-def Search_P_Drive(EmptyList):
+def Search_P_Drive():
     for dirpath, dirs, files in os.walk("P:\\"):
         for filename in files:
            
             fname = os.path.join(dirpath,filename)
           
             if fname.endswith(tuple(extensions)):
-                EmptyList.append(fname)
+                pFiles.append(fname)
 
-def Search_Q_Drive(EmptyList):
+def Search_Q_Drive():
     for dirpath, dirs, files in os.walk("Q:\\"):
         for filename in files:
            
             fname = os.path.join(dirpath,filename)
           
             if fname.endswith(tuple(extensions)):
-                EmptyList.append(fname)
+                qFiles.append(fname)
 
-def Search_R_Drive(EmptyList):
+def Search_R_Drive():
     for dirpath, dirs, files in os.walk("R:\\"):
         for filename in files:
            
             fname = os.path.join(dirpath,filename)
           
             if fname.endswith(tuple(extensions)):
-                EmptyList.append(fname)
+                rFiles.append(fname)
 
-def Search_S_Drive(EmptyList):
+def Search_S_Drive():
     for dirpath, dirs, files in os.walk("S:\\"):
         for filename in files:
            
             fname = os.path.join(dirpath,filename)
           
             if fname.endswith(tuple(extensions)):
-                EmptyList.append(fname)
+                sFiles.append(fname)
 
-def Search_T_Drive(EmptyList):
+def Search_T_Drive():
     for dirpath, dirs, files in os.walk("T:\\"):
         for filename in files:
            
             fname = os.path.join(dirpath,filename)
           
             if fname.endswith(tuple(extensions)):
-                EmptyList.append(fname)
+                tFiles.append(fname)
 
-def Search_U_Drive(EmptyList):
+def Search_U_Drive():
     for dirpath, dirs, files in os.walk("U:\\"):
         for filename in files:
            
             fname = os.path.join(dirpath,filename)
           
             if fname.endswith(tuple(extensions)):
-                EmptyList.append(fname)
+                uFiles.append(fname)
 
-def Search_V_Drive(EmptyList):
+def Search_V_Drive():
     for dirpath, dirs, files in os.walk("V:\\"):
         for filename in files:
            
             fname = os.path.join(dirpath,filename)
           
             if fname.endswith(tuple(extensions)):
-                EmptyList.append(fname)
+                vFiles.append(fname)
 
-def Search_W_Drive(EmptyList):
+def Search_W_Drive():
     for dirpath, dirs, files in os.walk("W:\\"):
         for filename in files:
            
             fname = os.path.join(dirpath,filename)
           
             if fname.endswith(tuple(extensions)):
-                EmptyList.append(fname)
+                wFiles.append(fname)
 
-def Search_X_Drive(EmptyList):
+def Search_X_Drive():
     for dirpath, dirs, files in os.walk("X:\\"):
         for filename in files:
            
             fname = os.path.join(dirpath,filename)
           
             if fname.endswith(tuple(extensions)):
-                EmptyList.append(fname)
+                xFiles.append(fname)
 
-def Search_Y_Drive(EmptyList):
+def Search_Y_Drive():
     for dirpath, dirs, files in os.walk("Y:\\"):
         for filename in files:
            
             fname = os.path.join(dirpath,filename)
           
             if fname.endswith(tuple(extensions)):
-                EmptyList.append(fname)
+                yFiles.append(fname)
 
-def Search_Z_Drive(EmptyList):
+def Search_Z_Drive():
     for dirpath, dirs, files in os.walk("Z:\\"):
         for filename in files:
            
             fname = os.path.join(dirpath,filename)
           
             if fname.endswith(tuple(extensions)):
-                EmptyList.append(fname)
+                zFiles.append(fname)
 
 
 
